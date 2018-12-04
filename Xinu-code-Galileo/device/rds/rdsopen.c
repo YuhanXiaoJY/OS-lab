@@ -83,6 +83,32 @@ devcall	rdsopen (
 		return SYSERR;
 	}
 
+
+	//l6e1
+	int i;
+	int flag = 0;
+	for(i = 0; i<(devptr->dvminor);i++)
+	{
+		char * tempid;
+		struct	rdscblk	* ptr;
+		ptr = &rdstab[i];
+		strcpy(tempid, ptr->rd_id);
+		if(ptr->rd_state == RD_OPEN && strcmp(tempid, diskid)!=0)
+		{	
+			kprintf("Diskid %s has been used!\n", diskid);
+			flag = 1;
+			break;
+		}
+
+	}
+	if(flag == 0)
+		kprintf("Diskid %s is valid.\n", diskid);
+	//l6e1
+
+
+
+
+
 	/* Change state of device to indicate currently open */
 
 	rdptr->rd_state = RD_OPEN;
