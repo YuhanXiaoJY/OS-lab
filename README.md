@@ -1,7 +1,2 @@
-Bjk
-A
-D
-B
-C
-
 # OS-lab
+lab work for operating system.
